@@ -1,0 +1,30 @@
+//AND OR
+#include<stdio.h>
+ int main()
+ {  char *p="Hello World";
+   int i=0;
+   printf("string entered= %s\n",p);
+       for(i=0; p[i]!='\0';i++)
+       {
+    char ch =p[i];
+      char and_result =ch & 127;
+      printf(" AND of %c with 127: '%c'(ASCII : %d)\n",ch,and_result,and_result);
+       }
+       printf("\n");
+       for(i=0; p[i]!='\0';i++)
+       {
+     char ch =p[i];  
+      char or_result =ch | 127;
+      printf(" OR of %c with 127: '%c'(ASCII : %d)\n",ch,or_result,or_result);
+       }
+       printf("\n");
+       for(i=0; p[i]!='\0';i++)
+       {
+      char ch =p[i];
+      char xor_result =ch ^ 127;
+      printf(" XOR of %c with 127: '%c'(ASCII : %d)\n",ch,xor_result,xor_result);
+       }
+ return 0;
+ }
+
+

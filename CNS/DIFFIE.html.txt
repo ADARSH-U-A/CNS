@@ -1,0 +1,43 @@
+//DIFFIE
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DH Key Exchange</title>
+</head>
+<body>
+  <h3>Diffie-Hellman Demo</h3>
+  <p>p: <input id="p" value="23"></p>
+  <p>g: <input id="g" value="5"></p>
+  <p>Alice private (a): <input id="a" value="6"></p>
+  <p>Bob private (b): <input id="b" value="15"></p>
+  <button onclick="dh()">Compute</button>
+  <pre id="out"></pre>
+
+  <script>
+    function modPow(b, e, m) {
+      let r = 1;
+      b %= m;
+      while (e > 0) {
+        if (e % 2) r = r * b % m;
+        e = Math.floor(e / 2);
+        b = b * b % m;
+      }
+      return r;
+    }
+
+    function dh() {
+      let p = +pEl.value, g = +gEl.value, a = +aEl.value, b = +bEl.value;
+      let A = modPow(g, a, p), B = modPow(g, b, p);
+      let kA = modPow(B, a, p), kB = modPow(A, b, p);
+      out.innerText = `Alice Public: ${A}  Bob Public: ${B}\nShared Key A: ${kA}\nShared Key B: ${kB}`;
+    }
+
+    let pEl = document.getElementById("p"),
+        gEl = document.getElementById("g"),
+        aEl = document.getElementById("a"),
+        bEl = document.getElementById("b"),
+        out = document.getElementById("out");
+  </script>
+</body>
+</html>

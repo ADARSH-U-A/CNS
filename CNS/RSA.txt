@@ -1,0 +1,33 @@
+// RSA
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Lab7 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter prime p: ");
+        BigInteger p = new BigInteger(sc.nextLine());
+        System.out.print("Enter prime q: ");
+        BigInteger q = new BigInteger(sc.nextLine());
+
+        BigInteger n = p.multiply(q);
+        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+
+        System.out.print("Enter public exponent e: ");
+        BigInteger e = new BigInteger(sc.nextLine());
+        BigInteger d = e.modInverse(phi);
+
+        System.out.println("Public Key: (" + e + ", " + n + ")");
+        System.out.println("Private Key: (" + d + ", " + n + ")");
+
+        System.out.print("Enter message (number): ");
+        BigInteger m = new BigInteger(sc.nextLine());
+
+        BigInteger c = m.modPow(e, n);
+        System.out.println("Encrypted: " + c);
+
+        BigInteger decrypted = c.modPow(d, n);
+        System.out.println("Decrypted: " + decrypted);
+    }
+}
